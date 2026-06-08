@@ -1,8 +1,18 @@
 # 广州商学院本科毕业论文（设计）LaTeX 模板
 
-这是一个 **Agent-first / Vibe Writing** 取向的非官方广州商学院本科毕业论文（设计）LaTeX 模板。这里的 Vibe Writing 指“人给目标和判断，Agent 反复改稿、编译和验收”的写作方式。仓库名中的 `gcc` 指 Guangzhou College of Commerce。
+这是一个 **Agent-first / Vibe Writing** 取向的非官方广州商学院本科毕业论文（设计）工作流模板。这里的 Vibe Writing 指“人给目标、材料和判断，Agent 负责拆稿、写初稿、排版、编译、审核并迭代”的协作方式。仓库名中的 `gcc` 指 Guangzhou College of Commerce。
 
-本项目不是只给人手动填空的模板，而是给 Codex、Claude Code、Cursor 等 Agent 使用的工作流脚手架：人提供学校要求、研究内容和最终判断，Agent 负责拆分材料、更新 LaTeX 源文件、安装/检查编译环境、编译 PDF、按格式清单验收并迭代修正。
+它不只是排版模板。它可以支持：
+
+- 从一个毕业设计 idea 生成论文题目、目录、缺口清单和完整初稿骨架。
+- 把 Word / Markdown / PDF / 截图 / 代码项目材料迁移到 LaTeX 论文结构。
+- 生成 `main.pdf` 论文正文和 `attachments.pdf` 附件材料册。
+- 检查 LaTeX 环境、模板结构、学校格式和过程材料完整性。
+- 把 `AGENT_REVIEW.md` 交给另一个 Agent 做独立审核。
+
+本模板不是学校官方发布物。正式提交前，请以学院当年通知、导师意见和教务系统要求为准。没有真实项目材料、真实实验结果、真实截图和可核验参考文献时，不应让 Agent 凭空编造内容后直接提交。
+
+## 适用范围
 
 当前版本优先适配：
 
@@ -11,40 +21,50 @@
 - 现代信息产业学院毕业论文（设计）论文附件模板
 - 广州商学院毕业设计（论文）质量标准（试用）
 
-适用范围说明：本仓库以广州商学院通用撰写规范为底线，以现代信息产业学院 2026 届模板作为当前可执行样例。其他学院如果封面字段、附件表或签名页不同，应把学院当年模板一起交给 Agent，再局部调整 `extraTex/meta.tex`、`extraTex/attachments/` 或 `styles/gcc-thesis.sty`。质量标准主要用于检查“规范性”和“过程材料完整性”，具体版式仍以当年学院模板和导师要求为准。
+本仓库以广州商学院通用撰写规范为底线，以现代信息产业学院 2026 届模板作为当前可执行样例。其他学院如果封面字段、附件表或签名页不同，应把学院当年模板一起交给 Agent，再局部调整 `extraTex/meta.tex`、`extraTex/attachments/` 或 `styles/gcc-thesis.sty`。
 
-本模板不是学校官方发布物。正式提交前，请以学院当年通知、导师意见和教务系统要求为准。
+## 先选工作流
 
-## 你应该怎么用
-
-先按你的使用场景选一种方式：
-
-| 场景 | 推荐方式 |
+| 你的目标 | 入口 |
 |---|---|
-| 你想让 Codex / Claude / Cursor 帮你整理全文 | 用“方法一：让 Agent 自主接管” |
-| 你自己会改 LaTeX，只想填模板 | 用“方法二：自己手动填写” |
-| 你已经装好 TeX，只想知道编译命令 | 看“方法三：手动编译” |
-| 你用 VS Code + LaTeX Workshop | 看“方法四：VS Code / LaTeX Workshop” |
-| 你想找另一个 Agent 专门挑错 | 把 `AGENT_REVIEW.md` 交给它 |
+| 只有一个 idea，想生成完整论文初稿 | 读 [docs/idea-to-thesis-workflow.md](docs/idea-to-thesis-workflow.md) |
+| 已经有 Word / Markdown / 截图 / 代码材料，想整理成论文 | 看下面的“Agent 快速开始” |
+| 自己会改 LaTeX，只想填模板 | 看下面的“人工快速开始” |
+| 只想安装环境、编译 PDF、排查缺包 | 读 [docs/setup.md](docs/setup.md) |
+| 想核对学校格式 | 读 [docs/format-checklist.md](docs/format-checklist.md) 和 [docs/compliance-audit.md](docs/compliance-audit.md) |
+| 想让另一个 Agent 专门挑错 | 把 [AGENT_REVIEW.md](AGENT_REVIEW.md) 交给它 |
 
-本仓库会生成两个文件：
+三个 Agent 入口的边界：
 
-```text
-main.pdf          毕业论文（设计）正文
-attachments.pdf   论文附件材料册
-```
-
-如果你只需要正文，可以暂时不管 `attachments.tex` 和 `extraTex/attachments/`。
-
-三个入口的边界：
-
-- `README.md`：给人看的快速上手说明。
+- `README.md`：给人看的导航和快速上手。
 - `AGENTS.md`：给写作和排版 Agent 的执行说明。
 - `AGENT_REVIEW.md`：给审核 Agent 的只读检查说明。
 
-### 方法一（推荐）：让 Agent 自主接管
+## Idea 到论文初稿
 
-在 Codex / Claude Code / Cursor 中打开本仓库，然后直接给 Agent 这样的任务：
+如果你只有一个 idea，可以让 Agent 先跑 idea-to-thesis 工作流：
+
+```text
+请使用 gcc-thesis-template 执行 idea-to-thesis 工作流。
+
+我的 idea 是：
+【写你的毕业设计想法】
+
+我的专业/方向是：
+【例如：软件工程、人工智能、数据分析、信息管理等】
+
+请先阅读 README.md、AGENTS.md 和 docs/idea-to-thesis-workflow.md。
+然后判断选题可行性，生成题目、目录、缺口清单和论文初稿。
+能根据我提供材料写实的内容直接写入 extraTex/；缺少证据的地方必须标 TODO。
+不要编造实验数据、系统截图、用户调研、参考文献或不存在的功能。
+最后运行 scripts/check_structure.py 和 scripts/doctor.py；环境允许时再编译 main.pdf 和 attachments.pdf。
+```
+
+详细阶段、输入格式和验收要求见 [docs/idea-to-thesis-workflow.md](docs/idea-to-thesis-workflow.md)。
+
+## Agent 快速开始
+
+在 Codex / Claude Code / Cursor 中打开本仓库，然后给 Agent 这样的任务：
 
 ```text
 请使用这个仓库整理我的广州商学院本科毕业论文（设计）。
@@ -54,7 +74,7 @@ attachments.pdf   论文附件材料册
 最后按学校格式清单检查封面、声明、摘要、目录、正文首页、参考文献、致谢和附件表格。
 ```
 
-适合的输入材料：
+适合交给 Agent 的材料：
 
 - 学生姓名、学号、学院、专业班级、指导教师、日期
 - 论文题目和中英文关键词
@@ -63,13 +83,9 @@ attachments.pdf   论文附件材料册
 - 代码仓库、系统截图、实验记录、测试结果
 - 导师或学院新增格式要求
 
-Agent 的标准执行入口见 `AGENTS.md`。
+如果你的 Agent 支持 Skills，也可以让它读取 `skills/gcc-thesis-template/SKILL.md`。
 
-如果你的 Agent 支持 Skills，也可以让它读取 `skills/gcc-thesis-template/SKILL.md`。这个 Skill 是给 Agent 看的简化版操作规程，内容等价于“更新内容 → 检查环境 → 编译 → 视觉验收”。
-
-如果你想让另一个 Agent 专门审核这个模板，不要让它直接读普通 README 后自由发挥，而是把 `AGENT_REVIEW.md` 交给它。这个文件规定了只读审核流程、严重级别、必须检查的学校格式项和报告输出结构。
-
-### 方法二：自己手动填写
+## 人工快速开始
 
 ```bash
 git clone https://github.com/Aidenwu0209/gcc-thesis-template.git
@@ -78,9 +94,9 @@ python3 scripts/check_structure.py
 python3 scripts/doctor.py
 ```
 
-`check_structure.py` 用来检查模板文件是否齐全。`doctor.py` 用来检查本机是否装好了 LaTeX 编译环境；如果它提示缺少 `xelatex`、`biber` 或 `kpsewhich`，说明还不能在本机编译 PDF，需要先看下面的“LaTeX 环境与包安装”。
+`check_structure.py` 检查模板文件是否齐全。`doctor.py` 检查本机是否装好了 LaTeX 编译环境；如果提示缺少 `xelatex`、`biber` 或 `kpsewhich`，先看 [docs/setup.md](docs/setup.md)。
 
-然后修改这些文件：
+主要修改这些文件：
 
 ```text
 extraTex/meta.tex                 学生信息、题目、关键词
@@ -92,10 +108,10 @@ extraTex/back/thanks.tex          致谢
 extraTex/attachments/*.tex        附件材料表
 ```
 
-编译正文和附件：
+编译：
 
 ```bash
-bash scripts/build.sh
+bash scripts/build.sh all
 ```
 
 只编正文或附件：
@@ -105,138 +121,18 @@ bash scripts/build.sh main
 bash scripts/build.sh attachments
 ```
 
-### 方法三：手动编译
+## 产物和目录
 
-```bash
-xelatex -interaction=nonstopmode main.tex
-biber main
-xelatex -interaction=nonstopmode main.tex
-xelatex -interaction=nonstopmode main.tex
-
-xelatex -interaction=nonstopmode attachments.tex
-xelatex -interaction=nonstopmode attachments.tex
-```
-
-### 方法四：VS Code / LaTeX Workshop
-
-用 VS Code 打开：
+本仓库会生成两个文件：
 
 ```text
-gcc-thesis-template.code-workspace
+main.pdf          毕业论文（设计）正文
+attachments.pdf   论文附件材料册
 ```
 
-LaTeX Workshop 中提供三个 recipe：
+如果只需要正文，可以暂时不管 `attachments.tex` 和 `extraTex/attachments/`。
 
-- `gcc-thesis-template`：编译正文和附件
-- `gcc-main-only`：只编译 `main.tex`
-- `gcc-attachments-only`：只编译 `attachments.tex`
-
-使用前需要先安装 VS Code 扩展 LaTeX Workshop，并确保本机命令行可以运行 `xelatex` 和 `biber`。
-
-## LaTeX 环境与包安装
-
-### 最小要求
-
-- TeX Live / MacTeX / MiKTeX
-- XeLaTeX
-- Biber
-- Python 3（用于环境检查和结构检查）
-
-关键 LaTeX 包：
-
-```text
-ctex
-fandol
-fontspec
-xeCJK
-geometry
-setspace
-graphicx
-xcolor
-array
-fancyhdr
-titlesec
-titletoc
-enumitem
-caption
-booktabs
-longtable
-tabularx
-multirow
-verbatim
-indentfirst
-etoolbox
-amsmath
-amssymb
-hyperref
-biblatex
-biblatex-gb7714-2015
-```
-
-运行环境检查：
-
-```bash
-python3 scripts/doctor.py
-```
-
-### macOS
-
-完整安装，最省心：
-
-```bash
-brew install --cask mactex
-```
-
-MacTeX 体积较大，但最不容易缺包。
-
-轻量安装：
-
-```bash
-brew install --cask basictex
-sudo tlmgr update --self
-sudo tlmgr install \
-  ctex fandol fontspec xecjk geometry setspace fancyhdr titlesec titletoc enumitem \
-  caption booktabs tools multirow graphics xcolor indentfirst etoolbox \
-  amsmath amsfonts hyperref biblatex biblatex-gb7714-2015 biber latexmk
-```
-
-BasicTeX 体积小，但如果后续编译提示缺包，需要继续用 `tlmgr install <包名>` 补装。
-
-安装后如果命令行找不到 `xelatex`，重开终端，或确认 `/Library/TeX/texbin` 已加入 `PATH`。
-
-### Ubuntu / Debian / WSL
-
-```bash
-sudo apt update
-sudo apt install texlive-xetex texlive-lang-chinese texlive-latex-recommended texlive-latex-extra texlive-bibtex-extra biber latexmk
-```
-
-### Windows
-
-推荐安装 TeX Live 或 MiKTeX，并确保 `xelatex` 与 `biber` 在 PowerShell / CMD 的 `PATH` 中可用。
-
-安装后检查：
-
-```powershell
-xelatex --version
-biber --version
-python scripts/doctor.py
-```
-
-### Overleaf
-
-可以上传本仓库 zip 到 Overleaf，编译器选择 **XeLaTeX**。正文入口选择 `main.tex`；如果要编附件材料册，再把入口切换成 `attachments.tex`。如果参考文献没有自动刷新，手动 Recompile 两到三次，或检查 Overleaf 是否启用了 Biber。
-
-## 模板编译产物
-
-```text
-main.pdf          论文正文
-attachments.pdf   附件材料册
-```
-
-`.gitignore` 默认忽略 PDF 和 LaTeX 中间文件。正式发布 release 时再按需要上传 PDF。
-
-## 目录结构
+核心目录：
 
 ```text
 .
@@ -249,43 +145,24 @@ attachments.pdf   附件材料册
 │   ├── body/                        # 正文章节
 │   ├── back/                        # 附录、参考文献、致谢
 │   └── attachments/                 # 附件材料表
-├── assets/branding/gcc_logo.png
+├── docs/idea-to-thesis-workflow.md
+├── docs/setup.md
 ├── docs/format-checklist.md
+├── docs/compliance-audit.md
+├── AGENTS.md
 ├── AGENT_REVIEW.md
-├── scripts/check_structure.py
-├── scripts/doctor.py
-├── scripts/build.sh
 └── skills/gcc-thesis-template/SKILL.md
 ```
 
-## 与学校格式的对应关系
-
-- A4 纵向打印，页边距为上 2.5 cm、下 2.5 cm、左 2 cm、右 2 cm、左侧装订线 0.5 cm。
-- 正文中文宋体，英文 Times New Roman，小四，1.25 倍行距，首行缩进 2 个汉字。
-- 封面、原创性声明和版权使用授权书不显示页眉页码。
-- 摘要、英文摘要、目录使用罗马数字页码。
-- 正文从第 1 页开始使用阿拉伯数字页码。
-- 页眉居中显示论文题目，右侧放广州商学院 Logo。
-- 章节编号使用 `1`、`1.1`、`1.1.1`。
-- 图、表、公式按章编号。
-- 表题在表格上方，图题在图片下方。
-- 参考文献使用 GB/T 7714-2015 顺序编码制。
-- 附件册单独由 `attachments.tex` 生成，包含学校附件模板中的过程材料表。
-
-更详细的核对项见 `docs/format-checklist.md`。
-
-当前静态合规审计见 `docs/compliance-audit.md`。注意：未编译并逐页检查 PDF 前，不能宣称模板已经完全满足学校要求。
-
-## Agent 质量门
+## 质量门
 
 Agent 完成一次论文整理后，至少应说明：
 
-- `scripts/check_structure.py` 是否通过
-- `scripts/doctor.py` 是否通过
-- 是否成功生成 `main.pdf`
-- 是否成功生成 `attachments.pdf`
-- 是否检查过封面、声明、摘要、目录、正文首页、参考文献、致谢和附件表格
-- 若无法编译，缺少的是 TeX 环境、Biber、字体还是某个 LaTeX 包
+- `scripts/check_structure.py` 是否通过。
+- `scripts/doctor.py` 是否通过。
+- 是否成功生成 `main.pdf` 和 `attachments.pdf`。
+- 是否检查过封面、声明、摘要、目录、正文首页、参考文献、致谢和附件表格。
+- 若无法编译，缺少的是 TeX 环境、Biber、字体还是某个 LaTeX 包。
 
 没有实际编译和视觉检查时，不应声称“完全符合学校要求”。
 

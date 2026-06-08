@@ -1,6 +1,6 @@
 ---
 name: gcc-thesis-template
-description: Use this skill when formatting, migrating, compiling, or validating a Guangzhou College of Commerce undergraduate thesis or attachment-material booklet with this repository.
+description: Use this skill when turning an idea into a Guangzhou College of Commerce thesis draft, or when formatting, migrating, compiling, or validating a thesis or attachment-material booklet with this repository.
 ---
 
 # Guangzhou College of Commerce Thesis Template Skill
@@ -12,6 +12,7 @@ This skill turns `Aidenwu0209/gcc-thesis-template` into an Agent-led Vibe Writin
 Use this skill when the user wants to:
 
 - Fill or revise a Guangzhou College of Commerce undergraduate thesis.
+- Turn a graduation-project idea into a thesis title, outline, evidence gap list, and TODO-marked draft.
 - Convert Word, Markdown, PDF, screenshots, or code-project notes into the template.
 - Compile `main.pdf` or `attachments.pdf`.
 - Check whether the thesis follows the school format.
@@ -21,6 +22,8 @@ Use this skill when the user wants to:
 ## Workflow
 
 1. Read `README.md`, `AGENTS.md`, `docs/format-checklist.md`, and `docs/compliance-audit.md`.
+   - If starting from an idea, read `docs/idea-to-thesis-workflow.md`.
+   - If handling installation or compilation setup, read `docs/setup.md`.
 2. Inspect `extraTex/meta.tex` and update all student, title, date, and keyword fields.
 3. Put content in the correct layer:
    - `extraTex/front/` for statements and abstracts.
@@ -53,6 +56,7 @@ bash scripts/build.sh all
 ## Rules
 
 - Do not claim full compliance unless PDF compilation and visual inspection both succeeded.
+- Do not fabricate experiments, screenshots, user research, references, signatures, dates, or implemented features. Mark missing evidence as TODO.
 - If `scripts/doctor.py` fails, report the missing TeX tool or package.
 - Do not commit generated PDFs or LaTeX cache unless explicitly asked.
 - Preserve the unofficial-template disclaimer and license caveat.

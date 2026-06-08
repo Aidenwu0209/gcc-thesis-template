@@ -1,6 +1,6 @@
 # Agent Instructions for `gcc-thesis-template`
 
-This repository is an Agent-first LaTeX workflow for an unofficial Guangzhou College of Commerce undergraduate thesis template. Treat it as a Vibe Writing scaffold: the student supplies research facts and school requirements; the Agent updates sources, compiles, verifies, and reports remaining risks.
+This repository is an Agent-first LaTeX workflow for an unofficial Guangzhou College of Commerce undergraduate thesis template. Treat it as a Vibe Writing scaffold: the student supplies research facts and school requirements; the Agent helps turn an idea or draft into structured thesis files, compiles, verifies, and reports remaining risks.
 
 ## Core Goal
 
@@ -8,6 +8,8 @@ Produce two usable thesis artifacts:
 
 - `main.pdf`: undergraduate thesis body.
 - `attachments.pdf`: attachment-material booklet with task book, proposal, progress record, defense record, and score sheet.
+
+When the user only has an idea, first produce a realistic thesis direction, outline, evidence gap list, and TODO-marked draft by following `docs/idea-to-thesis-workflow.md`.
 
 ## File Ownership
 
@@ -22,6 +24,8 @@ Produce two usable thesis artifacts:
 ## Standard Workflow
 
 1. Read `README.md`, `docs/format-checklist.md`, `docs/compliance-audit.md`, `main.tex`, `attachments.tex`, and `extraTex/meta.tex`.
+   - If the request starts from only an idea, also read `docs/idea-to-thesis-workflow.md`.
+   - If the request involves installation or compilation failures, also read `docs/setup.md`.
 2. Ask for or infer the missing thesis facts: title, student name, student ID, college, major class, supervisor, dates, keywords, references, and project content.
 3. Update content files first. Avoid changing `styles/gcc-thesis.sty` unless the user explicitly asks for format work or the PDF clearly violates school rules.
 4. Run `python3 scripts/check_structure.py`.
@@ -33,6 +37,7 @@ Produce two usable thesis artifacts:
 ## Validation Rules
 
 - No final claim of “fully compliant” without a successful PDF compile and visual inspection.
+- Do not fabricate experiments, screenshots, user research, references, signatures, dates, or implemented features. Mark missing evidence as TODO.
 - If `xelatex` or `biber` is unavailable, say that only static checks were completed.
 - Keep generated PDFs and LaTeX cache out of commits unless the user explicitly asks to publish release assets.
 - For school Logo and official texts, keep the repository wording “unofficial” and preserve the license caveat in `README.md` and `NOTICE.md`.
@@ -64,4 +69,8 @@ For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That
 
 ```text
 请帮我把 Word/Markdown 草稿迁移到这个模板，保留研究事实，按章节拆分到 extraTex/body/。
+```
+
+```text
+请根据我的毕业设计 idea 执行 docs/idea-to-thesis-workflow.md，先判断选题、生成目录和缺口清单，再把不编造事实的论文初稿写入 extraTex/。
 ```

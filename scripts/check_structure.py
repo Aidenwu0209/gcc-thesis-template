@@ -30,6 +30,8 @@ required_files = [
     "README.md",
     "AGENTS.md",
     "AGENT_REVIEW.md",
+    "docs/idea-to-thesis-workflow.md",
+    "docs/setup.md",
     "docs/format-checklist.md",
     "docs/compliance-audit.md",
     "LICENSE",
