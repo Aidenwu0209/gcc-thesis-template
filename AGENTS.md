@@ -59,14 +59,28 @@ bash scripts/build.sh all
 
 For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That file defines the severity scale, required commands, PDF inspection pages, and report format.
 
-## Common User Prompt
+## Common User Prompts
 
 ```text
-请使用这个仓库帮助我完成广州商学院本科毕业论文（设计）。
+请帮我使用 https://github.com/Aidenwu0209/gcc-thesis-template。
+如果当前环境没有这个仓库，请先下载；如果已经打开仓库，请直接使用当前目录。
+接下来我会给你一个明确任务，请只按这个任务执行，不要自动扩展成完整论文生成。
+```
 
-我的目标是：【只做 LaTeX 排版和格式检查 / 整理已有草稿 / 从一个 idea 生成论文初稿】
+```text
+我的任务是：只做 LaTeX 排版和学校格式检查。
 
-我会直接在对话里提供 idea、学生信息、专业方向、草稿、代码、截图、参考文献、导师要求和学校补充要求。请先判断我的目标和材料是否足够，再写入模板、整理附件、运行检查，并说明还缺什么真实材料。
+我会提供学生信息、论文正文或草稿、参考文献和学校补充要求。请不要重写正文、不要生成新题目、不要扩写论文；只把材料放进模板，修 LaTeX、引用、格式和编译问题。
+```
 
-不要编造实验数据、系统截图、用户调研、参考文献、导师意见、签字日期或不存在的系统功能。
+```text
+我的任务是：把已有草稿和项目材料整理成广州商学院本科毕业论文（设计）模板。
+
+请保留真实内容，按模板拆分到 extraTex/。缺少证据的位置标 TODO，不要编造。
+```
+
+```text
+我的任务是：从一个 idea 生成可继续修改的论文初稿。
+
+请先判断选题是否适合本科毕业论文（设计），输出题目建议、论文目录和材料缺口清单。等我确认题目和目录后，再写入 extraTex/。
 ```
