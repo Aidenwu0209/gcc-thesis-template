@@ -11,10 +11,14 @@ COMMANDS = ["xelatex", "biber", "kpsewhich"]
 
 TEX_FILES = [
     "ctexbook.cls",
+    "FandolSong-Regular.otf",
     "fontspec.sty",
     "xeCJK.sty",
     "geometry.sty",
     "setspace.sty",
+    "graphicx.sty",
+    "xcolor.sty",
+    "array.sty",
     "fancyhdr.sty",
     "titlesec.sty",
     "titletoc.sty",
@@ -24,6 +28,12 @@ TEX_FILES = [
     "longtable.sty",
     "tabularx.sty",
     "multirow.sty",
+    "verbatim.sty",
+    "indentfirst.sty",
+    "etoolbox.sty",
+    "amsmath.sty",
+    "amssymb.sty",
+    "hyperref.sty",
     "biblatex.sty",
     "gb7714-2015.bbx",
 ]
@@ -62,8 +72,8 @@ def print_install_hints() -> None:
     print("\nInstall hints:")
     print("  macOS full install:   brew install --cask mactex")
     print("  macOS small install:  brew install --cask basictex && sudo tlmgr update --self")
-    print("  Ubuntu/Debian:        sudo apt install texlive-xetex texlive-lang-chinese texlive-bibtex-extra biber latexmk")
-    print("  TeX Live tlmgr:       tlmgr install ctex fontspec xecjk geometry setspace fancyhdr titlesec titletoc enumitem caption booktabs tools multirow biblatex biblatex-gb7714-2015 biber")
+    print("  Ubuntu/Debian:        sudo apt install texlive-xetex texlive-lang-chinese texlive-latex-recommended texlive-latex-extra texlive-bibtex-extra biber latexmk")
+    print("  TeX Live tlmgr:       tlmgr install ctex fandol fontspec xecjk geometry setspace fancyhdr titlesec titletoc enumitem caption booktabs tools multirow graphics xcolor indentfirst etoolbox amsmath amsfonts hyperref biblatex biblatex-gb7714-2015 biber")
     print("  Windows:              install TeX Live or MiKTeX, then ensure xelatex and biber are in PATH")
 
 
@@ -92,4 +102,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

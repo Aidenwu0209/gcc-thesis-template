@@ -1,6 +1,6 @@
 # 广州商学院本科毕业论文（设计）LaTeX 模板
 
-这是一个 **Agent-first / Vibe Writing** 取向的非官方广州商学院本科毕业论文（设计）LaTeX 模板。仓库名中的 `gcc` 指 Guangzhou College of Commerce。
+这是一个 **Agent-first / Vibe Writing** 取向的非官方广州商学院本科毕业论文（设计）LaTeX 模板。这里的 Vibe Writing 指“人给目标和判断，Agent 反复改稿、编译和验收”的写作方式。仓库名中的 `gcc` 指 Guangzhou College of Commerce。
 
 本项目不是只给人手动填空的模板，而是给 Codex、Claude Code、Cursor 等 Agent 使用的工作流脚手架：人提供学校要求、研究内容和最终判断，Agent 负责拆分材料、更新 LaTeX 源文件、安装/检查编译环境、编译 PDF、按格式清单验收并迭代修正。
 
@@ -11,9 +11,36 @@
 - 现代信息产业学院毕业论文（设计）论文附件模板
 - 广州商学院毕业设计（论文）质量标准（试用）
 
+适用范围说明：本仓库以广州商学院通用撰写规范为底线，以现代信息产业学院 2026 届模板作为当前可执行样例。其他学院如果封面字段、附件表或签名页不同，应把学院当年模板一起交给 Agent，再局部调整 `extraTex/meta.tex`、`extraTex/attachments/` 或 `styles/gcc-thesis.sty`。质量标准主要用于检查“规范性”和“过程材料完整性”，具体版式仍以当年学院模板和导师要求为准。
+
 本模板不是学校官方发布物。正式提交前，请以学院当年通知、导师意见和教务系统要求为准。
 
 ## 你应该怎么用
+
+先按你的使用场景选一种方式：
+
+| 场景 | 推荐方式 |
+|---|---|
+| 你想让 Codex / Claude / Cursor 帮你整理全文 | 用“方法一：让 Agent 自主接管” |
+| 你自己会改 LaTeX，只想填模板 | 用“方法二：自己手动填写” |
+| 你已经装好 TeX，只想知道编译命令 | 看“方法三：手动编译” |
+| 你用 VS Code + LaTeX Workshop | 看“方法四：VS Code / LaTeX Workshop” |
+| 你想找另一个 Agent 专门挑错 | 把 `AGENT_REVIEW.md` 交给它 |
+
+本仓库会生成两个文件：
+
+```text
+main.pdf          毕业论文（设计）正文
+attachments.pdf   论文附件材料册
+```
+
+如果你只需要正文，可以暂时不管 `attachments.tex` 和 `extraTex/attachments/`。
+
+三个入口的边界：
+
+- `README.md`：给人看的快速上手说明。
+- `AGENTS.md`：给写作和排版 Agent 的执行说明。
+- `AGENT_REVIEW.md`：给审核 Agent 的只读检查说明。
 
 ### 方法一（推荐）：让 Agent 自主接管
 
@@ -38,11 +65,11 @@
 
 Agent 的标准执行入口见 `AGENTS.md`。
 
-如果你的 Agent 支持 Skills，也可以让它读取 `skills/gcc-thesis-template/SKILL.md`。这个 Skill 把“更新内容 → 检查环境 → 编译 → 视觉验收”的流程写成了更短的执行规范。
+如果你的 Agent 支持 Skills，也可以让它读取 `skills/gcc-thesis-template/SKILL.md`。这个 Skill 是给 Agent 看的简化版操作规程，内容等价于“更新内容 → 检查环境 → 编译 → 视觉验收”。
 
 如果你想让另一个 Agent 专门审核这个模板，不要让它直接读普通 README 后自由发挥，而是把 `AGENT_REVIEW.md` 交给它。这个文件规定了只读审核流程、严重级别、必须检查的学校格式项和报告输出结构。
 
-### 方法二：本地硬编码使用
+### 方法二：自己手动填写
 
 ```bash
 git clone https://github.com/Aidenwu0209/gcc-thesis-template.git
@@ -50,6 +77,8 @@ cd gcc-thesis-template
 python3 scripts/check_structure.py
 python3 scripts/doctor.py
 ```
+
+`check_structure.py` 用来检查模板文件是否齐全。`doctor.py` 用来检查本机是否装好了 LaTeX 编译环境；如果它提示缺少 `xelatex`、`biber` 或 `kpsewhich`，说明还不能在本机编译 PDF，需要先看下面的“LaTeX 环境与包安装”。
 
 然后修改这些文件：
 
@@ -63,7 +92,7 @@ extraTex/back/thanks.tex          致谢
 extraTex/attachments/*.tex        附件材料表
 ```
 
-编译：
+编译正文和附件：
 
 ```bash
 bash scripts/build.sh
@@ -102,6 +131,8 @@ LaTeX Workshop 中提供三个 recipe：
 - `gcc-main-only`：只编译 `main.tex`
 - `gcc-attachments-only`：只编译 `attachments.tex`
 
+使用前需要先安装 VS Code 扩展 LaTeX Workshop，并确保本机命令行可以运行 `xelatex` 和 `biber`。
+
 ## LaTeX 环境与包安装
 
 ### 最小要求
@@ -115,10 +146,14 @@ LaTeX Workshop 中提供三个 recipe：
 
 ```text
 ctex
+fandol
 fontspec
 xeCJK
 geometry
 setspace
+graphicx
+xcolor
+array
 fancyhdr
 titlesec
 titletoc
@@ -128,6 +163,12 @@ booktabs
 longtable
 tabularx
 multirow
+verbatim
+indentfirst
+etoolbox
+amsmath
+amssymb
+hyperref
 biblatex
 biblatex-gb7714-2015
 ```
@@ -146,13 +187,20 @@ python3 scripts/doctor.py
 brew install --cask mactex
 ```
 
+MacTeX 体积较大，但最不容易缺包。
+
 轻量安装：
 
 ```bash
 brew install --cask basictex
 sudo tlmgr update --self
-sudo tlmgr install ctex fontspec xecjk geometry setspace fancyhdr titlesec titletoc enumitem caption booktabs tools multirow biblatex biblatex-gb7714-2015 biber latexmk
+sudo tlmgr install \
+  ctex fandol fontspec xecjk geometry setspace fancyhdr titlesec titletoc enumitem \
+  caption booktabs tools multirow graphics xcolor indentfirst etoolbox \
+  amsmath amsfonts hyperref biblatex biblatex-gb7714-2015 biber latexmk
 ```
+
+BasicTeX 体积小，但如果后续编译提示缺包，需要继续用 `tlmgr install <包名>` 补装。
 
 安装后如果命令行找不到 `xelatex`，重开终端，或确认 `/Library/TeX/texbin` 已加入 `PATH`。
 
@@ -160,7 +208,7 @@ sudo tlmgr install ctex fontspec xecjk geometry setspace fancyhdr titlesec title
 
 ```bash
 sudo apt update
-sudo apt install texlive-xetex texlive-lang-chinese texlive-bibtex-extra biber latexmk
+sudo apt install texlive-xetex texlive-lang-chinese texlive-latex-recommended texlive-latex-extra texlive-bibtex-extra biber latexmk
 ```
 
 ### Windows
@@ -177,7 +225,7 @@ python scripts/doctor.py
 
 ### Overleaf
 
-可以上传本仓库 zip 到 Overleaf，编译器选择 **XeLaTeX**。如果参考文献没有自动刷新，手动 Recompile 两到三次，或检查 Overleaf 是否启用了 Biber。
+可以上传本仓库 zip 到 Overleaf，编译器选择 **XeLaTeX**。正文入口选择 `main.tex`；如果要编附件材料册，再把入口切换成 `attachments.tex`。如果参考文献没有自动刷新，手动 Recompile 两到三次，或检查 Overleaf 是否启用了 Biber。
 
 ## 模板编译产物
 
