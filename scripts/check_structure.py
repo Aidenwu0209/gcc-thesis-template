@@ -28,7 +28,10 @@ required_files = [
     "extraTex/attachments/score_sheet.tex",
     "assets/branding/gcc_logo.png",
     "README.md",
+    "AGENTS.md",
     "LICENSE",
+    "scripts/doctor.py",
+    "skills/gcc-thesis-template/SKILL.md",
 ]
 
 required_style_markers = [

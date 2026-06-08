@@ -16,6 +16,7 @@
 *.snm
 *.vrb
 main.pdf
+attachments.pdf
 build/
+.latex-cache/
 .DS_Store
-

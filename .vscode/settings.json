@@ -1,0 +1,50 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "gcc-build-all",
+      "command": "bash",
+      "args": [
+        "scripts/build.sh",
+        "all"
+      ]
+    },
+    {
+      "name": "gcc-build-main",
+      "command": "bash",
+      "args": [
+        "scripts/build.sh",
+        "main"
+      ]
+    },
+    {
+      "name": "gcc-build-attachments",
+      "command": "bash",
+      "args": [
+        "scripts/build.sh",
+        "attachments"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "gcc-thesis-template",
+      "tools": [
+        "gcc-build-all"
+      ]
+    },
+    {
+      "name": "gcc-main-only",
+      "tools": [
+        "gcc-build-main"
+      ]
+    },
+    {
+      "name": "gcc-attachments-only",
+      "tools": [
+        "gcc-build-attachments"
+      ]
+    }
+  ],
+  "latex-workshop.latex.outDir": ".latex-cache"
+}
+
