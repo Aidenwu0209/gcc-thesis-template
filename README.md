@@ -69,6 +69,8 @@
 
 这个工作流已经直接内置 [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) 的毕业论文高相关子集，包括 research ideation、ML paper writing、academic plotting 和 ARA rigor review。用户不需要先安装上游仓库才能让 Agent 阅读这些 Skill。
 
+使用时不要让 Agent 一次性加载所有 Skills。推荐先读 `skills/gcc-thesis-template/SKILL.md` 和 [docs/agent-skills-workflow.md](docs/agent-skills-workflow.md)，再按当前阶段选择 1-3 个 Orchestra Skill。
+
 ## Agent 快速开始
 
 在 Codex / Claude Code / Cursor 中打开本仓库，然后给 Agent 这样的任务：

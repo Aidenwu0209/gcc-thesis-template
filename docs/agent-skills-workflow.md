@@ -35,6 +35,41 @@ skills/orchestra-research/AI-Research-SKILLs/22-agent-native-research-artifact
 | `ara-research-manager` | 会话结束后记录决策、实验、失败和证据 | 长期迭代论文或项目，避免过程材料丢失 |
 | `ara-rigor-reviewer` | 从证据、可证伪性、方法严谨性等维度审查 | 提交前做内容严谨性复核 |
 
+## 加载策略
+
+不要让 Agent 一次性读取所有 Orchestra Skills。正确方式是路由式、阶段式加载：
+
+```text
+第一步：始终先读
+- skills/gcc-thesis-template/SKILL.md
+- docs/agent-skills-workflow.md
+
+第二步：按当前任务阶段选择 1-3 个相关 Skill
+
+第三步：每次说明读取了哪些 Skill、为什么读取、哪些 Skill 没有读取
+```
+
+原因：
+
+- Orchestra Skill 文件包含 references 和 templates，一次性全读会占用大量上下文。
+- 有些 Skill 适用场景互斥，例如 `ml-paper-writing` 偏 AI/实验论文，`systems-paper-writing` 偏系统工程论文。
+- 有些 Skill 是后处理流程，例如 `ara-research-manager`，不应该在任务一开始运行。
+- 少量精准加载通常比全量加载更稳定，也更容易让 Agent 按广州商学院模板落地。
+
+阶段路由建议：
+
+| 当前任务 | 建议读取 |
+|---|---|
+| 只有 idea | `brainstorming-research-ideas`、`creative-thinking-for-research` |
+| 软件系统、平台、工具类毕业设计 | `systems-paper-writing` |
+| AI、算法、实验类毕业设计 | `ml-paper-writing` |
+| 需要图表、系统架构图、实验图 | `academic-plotting` |
+| 材料很多，需要整理证据链 | `ara-compiler` |
+| 长期项目结束后记录过程 | `ara-research-manager` |
+| 提交前检查结论和证据 | `ara-rigor-reviewer` |
+
+如果一个阶段同时命中多个方向，优先选择最能推进当前产出的 1-3 个。不要因为 Skill 存在就读取。
+
 ## 内置路径
 
 Agent 需要读取 Orchestra Skill 时，直接读这些本地文件：
@@ -148,7 +183,9 @@ Agent 应输出：
 
 优先使用本仓库自带的 gcc-thesis-template Skill。
 本仓库已经内置 Orchestra Research 的 thesis-relevant skills 子集，路径在 skills/orchestra-research/AI-Research-SKILLs/。
-请按任务读取对应 SKILL.md，而不是要求用户手动安装。
+请不要一次性加载所有 Orchestra Skills。
+先读 skills/gcc-thesis-template/SKILL.md 和 docs/agent-skills-workflow.md。
+然后根据当前任务阶段选择最多 1-3 个相关 Skill 文件读取，并说明选择原因。
 
 我的目标是：
 【从 idea 起稿 / 整理项目材料 / 生成图表 / 审查证据 / 审核格式】

@@ -24,7 +24,7 @@ Use this skill when the user wants to:
 
 1. Read `README.md`, `AGENTS.md`, `docs/format-checklist.md`, and `docs/compliance-audit.md`.
    - If starting from an idea, read `docs/idea-to-thesis-workflow.md`.
-   - If coordinating Orchestra Research Skills, read `docs/agent-skills-workflow.md` and the relevant local files under `skills/orchestra-research/AI-Research-SKILLs/`.
+   - If coordinating Orchestra Research Skills, read `docs/agent-skills-workflow.md`, then select at most 1-3 relevant local Skill files under `skills/orchestra-research/AI-Research-SKILLs/`.
    - If handling installation or compilation setup, read `docs/setup.md`.
 2. Inspect `extraTex/meta.tex` and update all student, title, date, and keyword fields.
 3. Put content in the correct layer:
