@@ -123,6 +123,13 @@ extraTex/attachments/*.tex        附件材料
 
 ## 阶段 6：编译和审核
 
+在编译前，建议先按 [agent-skills-workflow.md](agent-skills-workflow.md) 选择合适的 Skill 链做一轮质量处理：
+
+- `brainstorming-research-ideas` / `creative-thinking-for-research`：选题收敛和创新角度。
+- `ml-paper-writing` / `systems-paper-writing`：技术路线、表格、引用和实验写作辅助。
+- `academic-plotting`：系统架构图、流程图、模块图和实验图。
+- `ara-rigor-reviewer`：证据、方法和结论严谨性审查。
+
 每次生成或大改后运行：
 
 ```bash

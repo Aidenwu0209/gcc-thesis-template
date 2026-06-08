@@ -13,6 +13,7 @@ Use this skill when the user wants to:
 
 - Fill or revise a Guangzhou College of Commerce undergraduate thesis.
 - Turn a graduation-project idea into a thesis title, outline, evidence gap list, and TODO-marked draft.
+- Coordinate vendored Orchestra Research Skills for research ideation, paper-writing support, academic plotting, research artifacts, and rigor review.
 - Convert Word, Markdown, PDF, screenshots, or code-project notes into the template.
 - Compile `main.pdf` or `attachments.pdf`.
 - Check whether the thesis follows the school format.
@@ -23,6 +24,7 @@ Use this skill when the user wants to:
 
 1. Read `README.md`, `AGENTS.md`, `docs/format-checklist.md`, and `docs/compliance-audit.md`.
    - If starting from an idea, read `docs/idea-to-thesis-workflow.md`.
+   - If coordinating Orchestra Research Skills, read `docs/agent-skills-workflow.md` and the relevant local files under `skills/orchestra-research/AI-Research-SKILLs/`.
    - If handling installation or compilation setup, read `docs/setup.md`.
 2. Inspect `extraTex/meta.tex` and update all student, title, date, and keyword fields.
 3. Put content in the correct layer:

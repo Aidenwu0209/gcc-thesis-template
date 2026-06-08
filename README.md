@@ -28,6 +28,7 @@
 | 你的目标 | 入口 |
 |---|---|
 | 只有一个 idea，想生成完整论文初稿 | 读 [docs/idea-to-thesis-workflow.md](docs/idea-to-thesis-workflow.md) |
+| 想用 Agent Skills 串起写作、图表、证据和审核 | 读 [docs/agent-skills-workflow.md](docs/agent-skills-workflow.md) |
 | 已经有 Word / Markdown / 截图 / 代码材料，想整理成论文 | 看下面的“Agent 快速开始” |
 | 自己会改 LaTeX，只想填模板 | 看下面的“人工快速开始” |
 | 只想安装环境、编译 PDF、排查缺包 | 读 [docs/setup.md](docs/setup.md) |
@@ -61,6 +62,12 @@
 ```
 
 详细阶段、输入格式和验收要求见 [docs/idea-to-thesis-workflow.md](docs/idea-to-thesis-workflow.md)。
+
+## Agent Skills 工作流
+
+从 0 到初稿只是第一步。完成初稿后，可以继续使用 [docs/agent-skills-workflow.md](docs/agent-skills-workflow.md) 把研究选题、论文写作、图表设计、过程证据整理和最终审核串起来。
+
+这个工作流已经直接内置 [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) 的毕业论文高相关子集，包括 research ideation、ML paper writing、academic plotting 和 ARA rigor review。用户不需要先安装上游仓库才能让 Agent 阅读这些 Skill。
 
 ## Agent 快速开始
 
@@ -146,12 +153,15 @@ attachments.pdf   论文附件材料册
 │   ├── back/                        # 附录、参考文献、致谢
 │   └── attachments/                 # 附件材料表
 ├── docs/idea-to-thesis-workflow.md
+├── docs/agent-skills-workflow.md
 ├── docs/setup.md
 ├── docs/format-checklist.md
 ├── docs/compliance-audit.md
 ├── AGENTS.md
 ├── AGENT_REVIEW.md
-└── skills/gcc-thesis-template/SKILL.md
+└── skills/
+    ├── gcc-thesis-template/SKILL.md
+    └── orchestra-research/AI-Research-SKILLs/
 ```
 
 ## 质量门
@@ -184,4 +194,8 @@ Agent 完成一次论文整理后，至少应说明：
 
 本项目代码采用 MIT License。
 
-模板工程结构参考了 `huangwb8/ChineseResearchLaTeX` 中的 `thesis-just-bachelor`，该项目同样采用 MIT License。广州商学院校名、Logo 和学校模板文本属于其各自权利方，本仓库仅用于论文排版学习与非官方模板维护。
+模板工程结构参考了 `huangwb8/ChineseResearchLaTeX` 中的 `thesis-just-bachelor`，该项目同样采用 MIT License。
+
+本仓库还内置了 `Orchestra-Research/AI-Research-SKILLs` 的毕业论文高相关子集，来源和许可见 [skills/orchestra-research/README.md](skills/orchestra-research/README.md) 与 [NOTICE.md](NOTICE.md)。
+
+广州商学院校名、Logo 和学校模板文本属于其各自权利方，本仓库仅用于论文排版学习与非官方模板维护。

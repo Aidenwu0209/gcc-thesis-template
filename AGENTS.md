@@ -25,6 +25,7 @@ When the user only has an idea, first produce a realistic thesis direction, outl
 
 1. Read `README.md`, `docs/format-checklist.md`, `docs/compliance-audit.md`, `main.tex`, `attachments.tex`, and `extraTex/meta.tex`.
    - If the request starts from only an idea, also read `docs/idea-to-thesis-workflow.md`.
+   - If the request involves Orchestra Research skills, research ideation, paper-writing helpers, academic plotting, research artifacts, or rigor review, also read `docs/agent-skills-workflow.md`.
    - If the request involves installation or compilation failures, also read `docs/setup.md`.
 2. Ask for or infer the missing thesis facts: title, student name, student ID, college, major class, supervisor, dates, keywords, references, and project content.
 3. Update content files first. Avoid changing `styles/gcc-thesis.sty` unless the user explicitly asks for format work or the PDF clearly violates school rules.
@@ -73,4 +74,8 @@ For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That
 
 ```text
 请根据我的毕业设计 idea 执行 docs/idea-to-thesis-workflow.md，先判断选题、生成目录和缺口清单，再把不编造事实的论文初稿写入 extraTex/。
+```
+
+```text
+请根据 docs/agent-skills-workflow.md 选择合适的 Orchestra Skill 链处理我的毕业论文；优先读取 skills/orchestra-research/AI-Research-SKILLs/ 里的本地 Skill 文件。
 ```

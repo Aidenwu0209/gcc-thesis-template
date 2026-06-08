@@ -31,12 +31,23 @@ required_files = [
     "AGENTS.md",
     "AGENT_REVIEW.md",
     "docs/idea-to-thesis-workflow.md",
+    "docs/agent-skills-workflow.md",
     "docs/setup.md",
     "docs/format-checklist.md",
     "docs/compliance-audit.md",
     "LICENSE",
     "scripts/doctor.py",
     "skills/gcc-thesis-template/SKILL.md",
+    "skills/orchestra-research/README.md",
+    "skills/orchestra-research/AI-Research-SKILLs/LICENSE",
+    "skills/orchestra-research/AI-Research-SKILLs/20-ml-paper-writing/ml-paper-writing/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/20-ml-paper-writing/academic-plotting/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/20-ml-paper-writing/systems-paper-writing/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/21-research-ideation/brainstorming-research-ideas/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/21-research-ideation/creative-thinking-for-research/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/22-agent-native-research-artifact/compiler/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/22-agent-native-research-artifact/research-manager/SKILL.md",
+    "skills/orchestra-research/AI-Research-SKILLs/22-agent-native-research-artifact/rigor-reviewer/SKILL.md",
 ]
 
 required_style_markers = [
