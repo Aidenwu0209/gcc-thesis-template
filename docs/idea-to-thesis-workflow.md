@@ -123,12 +123,7 @@ extraTex/attachments/*.tex        附件材料
 
 ## 阶段 6：编译和审核
 
-在编译前，建议先按 [agent-skills-workflow.md](agent-skills-workflow.md) 选择合适的 Skill 链做一轮质量处理：
-
-- `brainstorming-research-ideas` / `creative-thinking-for-research`：选题收敛和创新角度。
-- `ml-paper-writing` / `systems-paper-writing`：技术路线、表格、引用和实验写作辅助。
-- `academic-plotting`：系统架构图、流程图、模块图和实验图。
-- `ara-rigor-reviewer`：证据、方法和结论严谨性审查。
+在编译前，让 Agent 做一轮结构、证据和格式自检。用户不需要选择具体能力模块；Agent 会按当前阶段自行调用必要能力。
 
 每次生成或大改后运行：
 
@@ -168,15 +163,14 @@ bash scripts/build.sh all
 【列出代码、截图、数据、参考文献、导师要求；没有就写暂无】
 
 请按以下顺序工作：
-1. 阅读 README.md、AGENTS.md、docs/idea-to-thesis-workflow.md、docs/format-checklist.md、main.tex、attachments.tex 和 extraTex/meta.tex。
-2. 判断 idea 是否适合本科毕业论文（设计），给出 2-3 个题目候选。
-3. 选择最稳妥的题目，生成论文目录和每章材料缺口。
-4. 在不编造事实的前提下，生成完整论文初稿，并把内容写入 extraTex/ 对应文件。
-5. 对缺少证据的内容用 TODO 标记，不要编造实验数据、系统截图、用户访谈、参考文献或不存在的功能。
-6. 整理附件材料，缺导师签字、日期或评语的位置保留 TODO。
-7. 运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。
-8. 如果环境允许，运行 bash scripts/build.sh all 并检查 main.pdf 和 attachments.pdf。
-9. 最后说明已经完成什么、还缺什么真实材料、哪些地方不能确认。
+1. 调用本仓库的论文工作流，先判断 idea 是否适合本科毕业论文（设计），给出 2-3 个题目候选。
+2. 选择最稳妥的题目，生成论文目录和每章材料缺口。
+3. 在不编造事实的前提下，生成完整论文初稿，并把内容写入 extraTex/ 对应文件。
+4. 对缺少证据的内容用 TODO 标记，不要编造实验数据、系统截图、用户访谈、参考文献或不存在的功能。
+5. 整理附件材料，缺导师签字、日期或评语的位置保留 TODO。
+6. 运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。
+7. 如果环境允许，运行 bash scripts/build.sh all 并检查 main.pdf 和 attachments.pdf。
+8. 最后说明已经完成什么、还缺什么真实材料、哪些地方不能确认。
 ```
 
 ## 完成标准
