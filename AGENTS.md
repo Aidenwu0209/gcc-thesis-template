@@ -21,7 +21,7 @@ Produce two usable thesis artifacts:
 
 ## Standard Workflow
 
-1. Read `README.md`, `docs/format-checklist.md`, `main.tex`, `attachments.tex`, and `extraTex/meta.tex`.
+1. Read `README.md`, `docs/format-checklist.md`, `docs/compliance-audit.md`, `main.tex`, `attachments.tex`, and `extraTex/meta.tex`.
 2. Ask for or infer the missing thesis facts: title, student name, student ID, college, major class, supervisor, dates, keywords, references, and project content.
 3. Update content files first. Avoid changing `styles/gcc-thesis.sty` unless the user explicitly asks for format work or the PDF clearly violates school rules.
 4. Run `python3 scripts/check_structure.py`.
@@ -60,4 +60,3 @@ bash scripts/build.sh all
 ```text
 请帮我把 Word/Markdown 草稿迁移到这个模板，保留研究事实，按章节拆分到 extraTex/body/。
 ```
-

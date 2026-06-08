@@ -117,7 +117,8 @@
 \newcommand{\gccLogoPath}{assets/branding/gcc_logo.png}
 \newcommand{\gccBodyFont}{\gccSong\zihao{-4}\selectfont}
 \newcommand{\gccHeaderFont}{\gccSong\zihao{5}\selectfont}
-\newcommand{\gccFooterFont}{\gccTimes\bfseries\zihao{5}\selectfont}
+\newcommand{\gccFrontFooterFont}{\gccTimes\zihao{5}\selectfont}
+\newcommand{\gccMainFooterFont}{\gccHei\bfseries\zihao{5}\selectfont}
 \newcommand{\gccFrontTitleFont}{\gccHei\bfseries\zihao{-2}\selectfont}
 \newcommand{\gccChapterFont}{\gccSong\bfseries\zihao{4}\selectfont}
 \newcommand{\gccSectionFont}{\gccSong\bfseries\zihao{-4}\selectfont}
@@ -151,7 +152,7 @@
   \fancyhf{}
   \fancyhead[C]{\gccHeaderFont \gccHeaderTitle}
   \fancyhead[R]{\raisebox{-0.18cm}{\includegraphics[height=0.48cm]{\gccLogoPath}}}
-  \fancyfoot[C]{\gccFooterFont \thepage}
+  \fancyfoot[C]{\gccFrontFooterFont \thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -160,7 +161,7 @@
   \fancyhf{}
   \fancyhead[C]{\gccHeaderFont \gccHeaderTitle}
   \fancyhead[R]{\raisebox{-0.18cm}{\includegraphics[height=0.48cm]{\gccLogoPath}}}
-  \fancyfoot[C]{\gccFooterFont \thepage}
+  \fancyfoot[C]{\gccMainFooterFont \thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -169,14 +170,14 @@
   \fancyhf{}
   \fancyhead[C]{\gccHeaderFont \gccHeaderTitle}
   \fancyhead[R]{\raisebox{-0.18cm}{\includegraphics[height=0.48cm]{\gccLogoPath}}}
-  \fancyfoot[C]{\gccFooterFont \thepage}
+  \fancyfoot[C]{\gccMainFooterFont \thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
 
 \fancypagestyle{gcc-attachment}{
   \fancyhf{}
-  \fancyfoot[C]{\gccFooterFont \thepage}
+  \fancyfoot[C]{\gccMainFooterFont \thepage}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }

@@ -19,7 +19,7 @@ Use this skill when the user wants to:
 
 ## Workflow
 
-1. Read `README.md`, `AGENTS.md`, and `docs/format-checklist.md`.
+1. Read `README.md`, `AGENTS.md`, `docs/format-checklist.md`, and `docs/compliance-audit.md`.
 2. Inspect `extraTex/meta.tex` and update all student, title, date, and keyword fields.
 3. Put content in the correct layer:
    - `extraTex/front/` for statements and abstracts.
@@ -56,4 +56,3 @@ bash scripts/build.sh all
 - Do not commit generated PDFs or LaTeX cache unless explicitly asked.
 - Preserve the unofficial-template disclaimer and license caveat.
 - Keep the student-facing source files easy to edit; avoid hiding thesis content inside style macros.
-

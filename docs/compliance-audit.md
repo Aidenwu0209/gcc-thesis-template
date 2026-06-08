@@ -1,0 +1,72 @@
+# 合规审计记录
+
+审计对象：
+
+- `广州商学院本科毕业论文（设计）撰写基本规范.doc`
+- `【2026届】现代信息产业学院毕业论文（设计）撰写模板.pdf`
+- `【2026届】现代信息产业学院毕业论文（设计）论文附件模板.pdf`
+- `广州商学院毕业设计（论文）质量标准（试用）.xlsx`
+
+当前结论：
+
+- 源代码结构和关键格式规则已经按学校文件做了静态对齐。
+- 由于当前机器没有 `xelatex`、`biber`、`kpsewhich`，尚未完成 PDF 编译和逐页视觉验收。
+- 因此不能声称“完全满足学校要求”；只能说“已按学校要求实现到可静态检查的程度，下一步需要编译 PDF 后做页面级验收”。
+
+## 已静态对齐的要求
+
+| 学校要求 | 当前实现 |
+|---|---|
+| A4 纵向打印 | `styles/gcc-thesis.sty` 使用 `a4paper` |
+| 页边距上 2.5 cm、下 2.5 cm、左 2 cm、右 2 cm、左装订线 0.5 cm | `geometry` 已设置 |
+| 中文宋体，英文 Times New Roman | `fontspec` / `xeCJK` 已设置，并提供 fallback |
+| 正文小四、1.25 倍行距、首行缩进 2 字符 | `\zihao{-4}`、`\setstretch{1.25}`、`\parindent=2em` |
+| 封面不显示页眉页码 | `\gccMakeCover` 使用 `\thispagestyle{empty}` |
+| 原创性声明和版权授权页无页眉页码 | `extraTex/front/statement.tex` 使用 `\thispagestyle{empty}` |
+| 摘要页开始有页眉，页眉为论文题目，右侧学校 Logo，下划线 | `gcc-front` / `gcc-main` 页眉样式 |
+| 摘要、英文摘要、目录罗马页码，从 I 开始 | `main.tex` 中 `\pagenumbering{Roman}` |
+| 正文阿拉伯页码，从 1 开始 | `main.tex` 中 `\pagenumbering{arabic}` |
+| 摘要/Abstract 标题小二黑体居中 | `\gccFrontHeading` |
+| 章节编号 `1`、`1.1`、`1.1.1` | `ctexset` 和 `secnumdepth` |
+| 一级标题四号加粗居中，二/三级标题小四加粗顶格 | `gccChapterFont`、`gccSectionFont` |
+| 图题在图下方，表题在表上方 | `caption` 设置 |
+| 图、表、公式按章编号 | `\thefigure`、`\thetable`、`\theequation` |
+| 参考文献 GB/T 7714-2015 顺序编码制 | `biblatex` 使用 `style=gb7714-2015`、`sorting=none` |
+| 致谢单独成页 | `main.tex` 在致谢前 `\clearpage` |
+| 附件材料册包含任务书、开题报告、进展情况记录表、答辩记录表、评语评分表 | `attachments.tex` 和 `extraTex/attachments/` |
+
+## 需要 PDF 视觉验收的项目
+
+这些项目不能仅靠源码确认，必须编译后逐页看：
+
+- 封面字段位置、横线长度、题目两行位置是否贴近学校模板。
+- 页眉右侧 Logo 尺寸、位置是否与 Word/PDF 模板一致。
+- 页眉横线和正文版心是否有偏移。
+- 摘要、目录、正文首页的页码位置和字体观感。
+- 目录点线、标题缩进、长标题换行。
+- 表格是否跨页或文字是否溢出。
+- 附件材料表格高度是否足够、是否出现压线或换页异常。
+
+## 规范冲突与当前取舍
+
+学校《撰写基本规范》和 2026 届现代信息产业学院模板存在少量口径不完全一致：
+
+- `附录` 顺序：基本规范列在致谢后；2026 届撰写模板明确说明“正文后、参考文献前设立附录”。当前模板优先按 2026 届学院模板放在参考文献前。
+- `关键词` 缩进：基本规范写“首行空两格”；2026 届撰写模板批注写“关键词：顶格”。当前模板优先按 2026 届学院模板顶格。
+- `页码字体`：摘要页批注写罗马页码 Times New Roman 五号；基本规范写页码五号黑体加粗。当前模板拆分为前置页 Times New Roman 五号，正文/附件页黑体五号加粗。
+
+## 当前缺口
+
+- 当前环境缺少 TeX 工具链，`scripts/doctor.py` 报告 `xelatex`、`biber`、`kpsewhich` 不存在。
+- 尚未生成 `main.pdf` 和 `attachments.pdf`。
+- 尚未完成 WPS/Word/PDF 视觉对照。
+
+## 下一步验收命令
+
+```bash
+python3 scripts/check_structure.py
+python3 scripts/doctor.py
+bash scripts/build.sh all
+```
+
+如果编译成功，应打开 `main.pdf` 和 `attachments.pdf`，按本文件“需要 PDF 视觉验收的项目”逐项检查。

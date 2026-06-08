@@ -223,6 +223,8 @@ attachments.pdf   附件材料册
 
 更详细的核对项见 `docs/format-checklist.md`。
 
+当前静态合规审计见 `docs/compliance-audit.md`。注意：未编译并逐页检查 PDF 前，不能宣称模板已经完全满足学校要求。
+
 ## Agent 质量门
 
 Agent 完成一次论文整理后，至少应说明：
