@@ -51,7 +51,30 @@
 我会提供 idea、专业方向、已有材料和限制条件。请先判断选题是否适合本科毕业论文（设计），输出题目建议、论文目录和材料缺口清单。等我确认题目和目录后，再把初稿写入 extraTex/。不要编造实验数据、系统截图、用户调研、参考文献、导师意见、签字日期或不存在的系统功能。
 ```
 
-## 编译和检查
+上面的提示词只是入口，用来让 Agent 知道“这次要做什么”。完整规则不靠这几句话承载；Agent 执行时应读取仓库里的 `AGENTS.md`、`docs/` 和模板文件。如果要了解完整能力和检查标准，看下面的文档。
+
+## 文档地图
+
+- [Agent 调用流程](docs/agent-skills-workflow.md)：怎么把仓库交给 Agent，以及三种常用任务怎么调用。
+- [从 idea 到论文初稿](docs/idea-to-thesis-workflow.md)：只有想法时，如何生成题目、目录、缺口清单和初稿。
+- [LaTeX 环境、编译和排错](docs/setup.md)：安装 TeX、编译 PDF、处理缺包和 Overleaf。
+- [格式核对清单](docs/format-checklist.md)：封面、声明、摘要、目录、正文、参考文献和附件怎么检查。
+- [学校要求映射](docs/compliance-audit.md)：本模板和广州商学院质量标准、学院模板之间的对应关系。
+- [独立审核入口](AGENT_REVIEW.md)：把这个文件交给另一个 Agent，让它只读审核并挑错。
+
+## 检查与编译
+
+### Agent 快速检查
+
+把下面这段话交给 Agent：
+
+```text
+请只做快速检查，不要修改正文内容。
+
+请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh all。最后告诉我：哪些检查通过、哪些检查失败、是否生成了 main.pdf 和 attachments.pdf、还缺什么环境或材料。
+```
+
+### 手动检查和编译
 
 先检查结构和环境：
 

@@ -84,3 +84,9 @@ For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That
 
 请先判断选题是否适合本科毕业论文（设计），输出题目建议、论文目录和材料缺口清单。等我确认题目和目录后，再写入 extraTex/。
 ```
+
+```text
+请只做快速检查，不要修改正文内容。
+
+请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh all。最后告诉我哪些检查通过、哪些检查失败、是否生成了 PDF、还缺什么环境或材料。
+```

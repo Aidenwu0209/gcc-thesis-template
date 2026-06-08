@@ -4,6 +4,8 @@
 
 用户不需要理解仓库里有哪些内部能力，也不需要手动选择能力模块。它们是给 Agent 使用的，不是给用户学习的菜单。
 
+下面的提示词只负责启动任务。完整规则由仓库里的 `AGENTS.md`、`docs/` 和模板文件提供，Agent 执行时应自行读取。
+
 ## 1. 把仓库交给 Agent
 
 可以直接复制：
@@ -77,7 +79,19 @@ extraTex/attachments/*.tex
 
 ## 5. 编译和审核
 
-每次大改后让 Agent 运行：
+### Agent 快速检查
+
+只想让 Agent 检查仓库状态时，复制：
+
+```text
+请只做快速检查，不要修改正文内容。
+
+请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh all。最后告诉我：哪些检查通过、哪些检查失败、是否生成了 main.pdf 和 attachments.pdf、还缺什么环境或材料。
+```
+
+### 手动检查和编译
+
+自己在终端运行：
 
 ```bash
 python3 scripts/check_structure.py
@@ -98,6 +112,14 @@ attachments.pdf   附件材料册
 ```
 
 编译成功后，让 Agent 按 `AGENT_REVIEW.md` 做一次只读审核。没有成功编译和逐页检查 PDF 前，不能声称“完全符合学校要求”。
+
+## 6. 继续阅读
+
+- [从 idea 到论文初稿](idea-to-thesis-workflow.md)：只适合“从 idea 起稿”的用户。
+- [LaTeX 环境、编译和排错](setup.md)：安装 TeX、编译 PDF、排查缺包。
+- [格式核对清单](format-checklist.md)：逐项检查学校格式。
+- [学校要求映射](compliance-audit.md)：查看模板和学校质量标准的对应关系。
+- [独立审核入口](../AGENT_REVIEW.md)：交给另一个 Agent 做只读审核。
 
 ## Agent 内部规则
 
