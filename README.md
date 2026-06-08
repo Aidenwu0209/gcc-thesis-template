@@ -40,6 +40,8 @@ Agent 的标准执行入口见 `AGENTS.md`。
 
 如果你的 Agent 支持 Skills，也可以让它读取 `skills/gcc-thesis-template/SKILL.md`。这个 Skill 把“更新内容 → 检查环境 → 编译 → 视觉验收”的流程写成了更短的执行规范。
 
+如果你想让另一个 Agent 专门审核这个模板，不要让它直接读普通 README 后自由发挥，而是把 `AGENT_REVIEW.md` 交给它。这个文件规定了只读审核流程、严重级别、必须检查的学校格式项和报告输出结构。
+
 ### 方法二：本地硬编码使用
 
 ```bash
@@ -201,6 +203,7 @@ attachments.pdf   附件材料册
 │   └── attachments/                 # 附件材料表
 ├── assets/branding/gcc_logo.png
 ├── docs/format-checklist.md
+├── AGENT_REVIEW.md
 ├── scripts/check_structure.py
 ├── scripts/doctor.py
 ├── scripts/build.sh

@@ -16,6 +16,7 @@ Use this skill when the user wants to:
 - Compile `main.pdf` or `attachments.pdf`.
 - Check whether the thesis follows the school format.
 - Repair LaTeX formatting, references, page numbering, cover fields, or attachment forms.
+- Run an independent Agent review using `AGENT_REVIEW.md`.
 
 ## Workflow
 
@@ -56,3 +57,4 @@ bash scripts/build.sh all
 - Do not commit generated PDFs or LaTeX cache unless explicitly asked.
 - Preserve the unofficial-template disclaimer and license caveat.
 - Keep the student-facing source files easy to edit; avoid hiding thesis content inside style macros.
+- If the user asks for review/audit rather than editing, read `AGENT_REVIEW.md` and produce findings first.

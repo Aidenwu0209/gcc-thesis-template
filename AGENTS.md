@@ -36,6 +36,7 @@ Produce two usable thesis artifacts:
 - If `xelatex` or `biber` is unavailable, say that only static checks were completed.
 - Keep generated PDFs and LaTeX cache out of commits unless the user explicitly asks to publish release assets.
 - For school Logo and official texts, keep the repository wording “unofficial” and preserve the license caveat in `README.md` and `NOTICE.md`.
+- When the user asks for an independent audit or review, follow `AGENT_REVIEW.md` and default to read-only findings before making edits.
 
 ## Build Commands
 
@@ -46,6 +47,10 @@ bash scripts/build.sh main
 bash scripts/build.sh attachments
 bash scripts/build.sh all
 ```
+
+## Review Entry
+
+For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That file defines the severity scale, required commands, PDF inspection pages, and report format.
 
 ## Common User Prompts
 

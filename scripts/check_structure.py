@@ -29,6 +29,7 @@ required_files = [
     "assets/branding/gcc_logo.png",
     "README.md",
     "AGENTS.md",
+    "AGENT_REVIEW.md",
     "docs/format-checklist.md",
     "docs/compliance-audit.md",
     "LICENSE",
