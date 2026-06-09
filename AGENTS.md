@@ -4,10 +4,11 @@ This repository is an Agent-first LaTeX workflow for an unofficial Guangzhou Col
 
 ## Core Goal
 
-Produce two usable thesis artifacts:
+Produce one usable thesis artifact by default:
 
 - `main.pdf`: undergraduate thesis body.
-- `attachments.pdf`: attachment-material booklet with task book, proposal, progress record, defense record, and score sheet.
+
+`attachments.pdf` is optional. Do not work on attachment forms, scoring sheets, signatures, or review comments unless the user explicitly asks for them.
 
 User intake may come from chat messages, uploaded files, explicit local paths, screenshots, code repositories, Word/Markdown drafts, or existing repository files. Do not require the user to fill a special intake file before starting.
 
@@ -18,12 +19,12 @@ User intake may come from chat messages, uploaded files, explicit local paths, s
 - Body chapters: edit `extraTex/body/*.tex`.
 - References: edit `extraTex/back/references.bib`.
 - Thanks and appendix: edit `extraTex/back/thanks.tex` and `extraTex/back/appendix.tex`.
-- Attachment forms: edit `extraTex/attachments/*.tex`.
+- Optional attachment forms: edit `extraTex/attachments/*.tex` only when requested.
 - Formatting rules: edit `styles/gcc-thesis.sty` only when the school formatting requirement changes.
 
 ## Standard Workflow
 
-1. Read `README.md`, `docs/agent-skills-workflow.md`, `docs/format-checklist.md`, `docs/compliance-audit.md`, `main.tex`, `attachments.tex`, and `extraTex/meta.tex`.
+1. Read `README.md`, `docs/agent-skills-workflow.md`, `docs/format-checklist.md`, `docs/compliance-audit.md`, `main.tex`, and `extraTex/meta.tex`.
    - Use the user's chat content and attached/provided files as the primary intake.
    - If coordinating internal research-writing skills, do not load all skills at once. Select at most 1-3 relevant Skill files for the current stage and report which ones were read.
    - If the request involves installation or compilation failures, also read `docs/setup.md`.
@@ -32,14 +33,15 @@ User intake may come from chat messages, uploaded files, explicit local paths, s
 4. Update content files first. Avoid changing `styles/gcc-thesis.sty` unless the user explicitly asks for format work or the PDF clearly violates school rules.
 5. Run `python3 scripts/check_structure.py`.
 6. Run `python3 scripts/doctor.py`. If TeX tools are missing, report the missing environment and stop before pretending PDF validation passed.
-7. If the environment is ready, run `bash scripts/build.sh all`.
-8. Inspect `main.pdf` and `attachments.pdf`, especially cover, statement, abstract, TOC, first body page, references, thanks, and attachment forms.
+7. If the environment is ready, run `bash scripts/build.sh main`.
+8. Inspect `main.pdf`, especially cover, statement, abstract, TOC, first body page, references, and thanks.
 9. Fix formatting or content issues and recompile.
 
 ## Validation Rules
 
 - No final claim of “fully compliant” without a successful PDF compile and visual inspection.
 - Do not fabricate experiments, screenshots, user research, references, signatures, dates, or implemented features. Mark missing evidence as TODO.
+- Simulated data, sample screenshots, or placeholder results may be used only for demonstration, and must be explicitly labeled as simulated/sample/placeholder in the thesis body.
 - If `xelatex` or `biber` is unavailable, say that only static checks were completed.
 - Keep generated PDFs and LaTeX cache out of commits unless the user explicitly asks to publish release assets.
 - For school Logo and official texts, keep the repository wording “unofficial” and preserve the license caveat in `README.md` and `NOTICE.md`.
@@ -88,5 +90,5 @@ For independent compliance review, hand `AGENT_REVIEW.md` to another Agent. That
 ```text
 请只做快速检查，不要修改正文内容。
 
-请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh all。最后告诉我哪些检查通过、哪些检查失败、是否生成了 PDF、还缺什么环境或材料。
+请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh main。最后告诉我哪些检查通过、哪些检查失败、是否生成了 main.pdf、还缺什么环境或材料。
 ```

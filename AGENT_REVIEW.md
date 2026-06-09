@@ -20,7 +20,6 @@ AGENTS.md
 docs/format-checklist.md
 docs/compliance-audit.md
 main.tex
-attachments.tex
 styles/gcc-thesis.sty
 extraTex/meta.tex
 extraTex/front/statement.tex
@@ -33,7 +32,6 @@ extraTex/front/abstract_en.tex
 ```text
 广州商学院本科毕业论文（设计）撰写基本规范.doc
 【2026届】现代信息产业学院毕业论文（设计）撰写模板.pdf
-【2026届】现代信息产业学院毕业论文（设计）论文附件模板.pdf
 广州商学院毕业设计（论文）质量标准（试用）.xlsx
 ```
 
@@ -49,7 +47,7 @@ python3 scripts/doctor.py
 如果 `doctor.py` 通过，再运行：
 
 ```bash
-bash scripts/build.sh all
+bash scripts/build.sh main
 ```
 
 如果 `doctor.py` 不通过，不要编造 PDF 结果；只做源码级审核，并明确缺少的工具或 LaTeX 包。
@@ -61,7 +59,6 @@ bash scripts/build.sh all
 检查：
 
 - `main.tex` 是否生成论文正文。
-- `attachments.tex` 是否生成附件材料册。
 - `extraTex/` 是否清晰分层。
 - `styles/gcc-thesis.sty` 是否只承载格式规则。
 - `README.md`、`AGENTS.md`、`docs/compliance-audit.md` 是否没有互相矛盾。
@@ -84,11 +81,11 @@ bash scripts/build.sh all
 - 图、表、公式按章编号。
 - 参考文献为 GB/T 7714-2015 顺序编码制。
 - 致谢单独成页。
-- 附件材料册包含任务书、开题报告、进展记录、答辩记录、评语评分表。
+- 附件材料和评分表不是默认审核项；只有用户明确要求时才单独审核。
 
 ### 3. PDF 编译与视觉验收
 
-如果编译成功，必须打开 `main.pdf` 和 `attachments.pdf`，至少检查：
+如果编译成功，必须打开 `main.pdf`，至少检查：
 
 ```text
 main.pdf:
@@ -102,15 +99,6 @@ main.pdf:
 - 附录页
 - 参考文献页
 - 致谢页
-
-attachments.pdf:
-- 附件封面
-- 附件目录
-- 任务书
-- 开题报告
-- 进展情况记录表
-- 答辩记录表
-- 评语评分表
 ```
 
 视觉检查重点：

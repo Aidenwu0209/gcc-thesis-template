@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{gcc-thesis}
+\ProvidesPackage{styles/gcc-thesis}
   [2026/06/08 v0.1.0 Guangzhou College of Commerce thesis template]
 
 \RequirePackage{geometry}
@@ -49,50 +49,26 @@
   \newfontfamily\gccTimes{TeX Gyre Termes}
 }
 
-\IfFontExistsTF{SimSun}{
-  \setCJKmainfont{SimSun}
-  \newCJKfontfamily\gccSong{SimSun}
-}{
-  \IfFontExistsTF{Songti SC}{
-    \setCJKmainfont{Songti SC}
-    \newCJKfontfamily\gccSong{Songti SC}
-  }{
-    \setCJKmainfont{FandolSong-Regular}
-    \newCJKfontfamily\gccSong{FandolSong-Regular}
-  }
+\newcommand{\gccSetUnifiedCJKFont}[1]{%
+  \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
+  \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
+  \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
+  \newCJKfontfamily\gccHei[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
+  \newCJKfontfamily\gccFangSong[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
+  \newCJKfontfamily\gccKai[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
 }
 
-\IfFontExistsTF{SimHei}{
-  \newCJKfontfamily\gccHei{SimHei}
+\IfFontExistsTF{Songti SC}{
+  \gccSetUnifiedCJKFont{Songti SC}
 }{
-  \IfFontExistsTF{Heiti SC}{
-    \newCJKfontfamily\gccHei{Heiti SC}
+  \IfFontExistsTF{FandolSong-Regular}{
+    \gccSetUnifiedCJKFont{FandolSong-Regular}
   }{
-    \newCJKfontfamily\gccHei{FandolHei-Regular}
-  }
-}
-
-\IfFontExistsTF{FangSong_GB2312}{
-  \newCJKfontfamily\gccFangSong{FangSong_GB2312}
-}{
-  \IfFontExistsTF{FangSong}{
-    \newCJKfontfamily\gccFangSong{FangSong}
-  }{
-    \IfFontExistsTF{STFangsong}{
-      \newCJKfontfamily\gccFangSong{STFangsong}
+    \IfFontExistsTF{Noto Serif CJK SC}{
+      \gccSetUnifiedCJKFont{Noto Serif CJK SC}
     }{
-      \newCJKfontfamily\gccFangSong{FandolFang-Regular}
+      \gccSetUnifiedCJKFont{SimSun}
     }
-  }
-}
-
-\IfFontExistsTF{KaiTi}{
-  \newCJKfontfamily\gccKai{KaiTi}
-}{
-  \IfFontExistsTF{Kaiti SC}{
-    \newCJKfontfamily\gccKai{Kaiti SC}
-  }{
-    \newCJKfontfamily\gccKai{FandolKai-Regular}
   }
 }
 
@@ -182,14 +158,24 @@
   \renewcommand{\footrulewidth}{0pt}
 }
 
+\newsavebox{\gccFitBox}
+\newcommand{\gccFitText}[2]{%
+  \sbox{\gccFitBox}{#2}%
+  \ifdim\wd\gccFitBox>#1
+    \resizebox{#1}{!}{#2}%
+  \else
+    #2%
+  \fi
+}
+
 \newcommand{\gccUnderlineField}[2][8.7cm]{%
-  \underline{\makebox[#1][c]{#2}}%
+  \underline{\makebox[#1][c]{\gccFitText{#1}{#2}}}%
 }
 \newcommand{\gccCoverField}[2]{%
   {\gccSong\bfseries\zihao{3}\selectfont #1\gccUnderlineField[9.6cm]{#2}\par}%
 }
 \newcommand{\gccCoverTitleLine}[1]{%
-  \underline{\makebox[12.3cm][c]{{\gccSong\bfseries\zihao{-2}\selectfont #1}}}\par
+  \underline{\makebox[12.3cm][c]{\gccFitText{12.3cm}{{\gccSong\bfseries\zihao{-2}\selectfont #1}}}}\par
 }
 
 \newcommand{\gccMakeCover}{%

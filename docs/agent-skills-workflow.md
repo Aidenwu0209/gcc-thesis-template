@@ -40,7 +40,7 @@ cd gcc-thesis-template
 ```text
 我的任务是：把已有草稿和项目材料整理成广州商学院本科毕业论文（设计）模板。
 
-我会提供草稿、代码说明、截图、测试记录、参考文献、学生信息和导师要求。请保留真实内容，按模板拆分到 extraTex/，补齐摘要、正文结构、参考文献和附件 TODO。缺少证据的位置标 TODO，不要编造。整理后运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py；环境允许时编译 PDF。
+我会提供草稿、代码说明、截图、测试记录、参考文献、学生信息和导师要求。请保留真实内容，按模板拆分到 extraTex/，补齐摘要、正文结构和参考文献。缺少证据的位置标 TODO，不要编造。整理后运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py；环境允许时编译 main.pdf。
 ```
 
 ### 从 idea 生成论文初稿
@@ -48,7 +48,7 @@ cd gcc-thesis-template
 ```text
 我的任务是：从一个 idea 生成可继续修改的论文初稿。
 
-我会提供 idea、专业方向、已有材料和限制条件。请先判断选题是否适合本科毕业论文（设计），输出题目建议、论文目录和材料缺口清单。等我确认题目和目录后，再把初稿写入 extraTex/。不要编造实验数据、系统截图、用户调研、参考文献、导师意见、签字日期或不存在的系统功能。
+我会提供 idea、专业方向、已有材料和限制条件。请先判断选题是否适合本科毕业论文（设计），输出题目建议、论文目录和材料缺口清单。等我确认题目和目录后，再把初稿写入 extraTex/。不要编造实验数据、系统截图、用户调研、参考文献、导师意见、签字日期或不存在的系统功能；如果为了演示使用模拟数据、示例截图或占位结果，必须明确标注，不能写成真实结果。
 ```
 
 ## 3. 继续补材料
@@ -74,7 +74,6 @@ extraTex/front/abstract_en.tex
 extraTex/body/*.tex
 extraTex/back/references.bib
 extraTex/back/thanks.tex
-extraTex/attachments/*.tex
 ```
 
 ## 5. 编译和审核
@@ -86,7 +85,7 @@ extraTex/attachments/*.tex
 ```text
 请只做快速检查，不要修改正文内容。
 
-请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh all。最后告诉我：哪些检查通过、哪些检查失败、是否生成了 main.pdf 和 attachments.pdf、还缺什么环境或材料。
+请运行 python3 scripts/check_structure.py 和 python3 scripts/doctor.py。环境允许时再运行 bash scripts/build.sh main。最后告诉我：哪些检查通过、哪些检查失败、是否生成了 main.pdf、还缺什么环境或材料。
 ```
 
 ### 手动检查和编译
@@ -101,17 +100,16 @@ python3 scripts/doctor.py
 如果环境可用，再运行：
 
 ```bash
-bash scripts/build.sh all
+bash scripts/build.sh main
 ```
 
 最终应得到：
 
 ```text
 main.pdf          毕业论文（设计）正文
-attachments.pdf   附件材料册
 ```
 
-编译成功后，让 Agent 按 `AGENT_REVIEW.md` 做一次只读审核。没有成功编译和逐页检查 PDF 前，不能声称“完全符合学校要求”。
+编译成功后，让 Agent 按 `AGENT_REVIEW.md` 做一次只读审核。没有成功编译和逐页检查 `main.pdf` 前，不能声称“完全符合学校要求”。
 
 ## 6. 继续阅读
 
@@ -131,3 +129,5 @@ attachments.pdf   附件材料册
 - 如果用户只要排版，优先保留正文内容，不主动重写论文。
 - 真实材料不足的位置保留 `TODO`。
 - 不要编造实验数据、系统截图、用户调研、参考文献、导师意见、签字日期或不存在的系统功能。
+- 模拟数据、示例截图或占位结果可以用于演示结构，但必须显式标注为模拟/示例/占位。
+- 附件材料和评分表不是默认任务；只有用户明确要求时才处理 `attachments.tex`。

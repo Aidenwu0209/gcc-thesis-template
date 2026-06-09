@@ -1,6 +1,6 @@
 ---
 name: gcc-thesis-template
-description: Use this skill when turning an idea into a Guangzhou College of Commerce thesis draft, or when formatting, migrating, compiling, or validating a thesis or attachment-material booklet with this repository.
+description: Use this skill when turning an idea into a Guangzhou College of Commerce thesis draft, or when formatting, migrating, compiling, or validating a thesis body with this repository.
 ---
 
 # Guangzhou College of Commerce Thesis Template Skill
@@ -15,9 +15,9 @@ Use this skill when the user wants to:
 - Turn a graduation-project idea into a thesis title, outline, evidence gap list, and TODO-marked draft.
 - Coordinate vendored Orchestra Research Skills for research ideation, paper-writing support, academic plotting, research artifacts, and rigor review.
 - Convert Word, Markdown, PDF, screenshots, or code-project notes into the template.
-- Compile `main.pdf` or `attachments.pdf`.
+- Compile and inspect `main.pdf`.
 - Check whether the thesis follows the school format.
-- Repair LaTeX formatting, references, page numbering, cover fields, or attachment forms.
+- Repair LaTeX formatting, references, page numbering, or cover fields.
 - Run an independent Agent review using `AGENT_REVIEW.md`.
 
 ## Workflow
@@ -32,7 +32,7 @@ Use this skill when the user wants to:
    - `extraTex/front/` for statements and abstracts.
    - `extraTex/body/` for thesis chapters.
    - `extraTex/back/` for appendix, bibliography, and thanks.
-   - `extraTex/attachments/` for task/proposal/progress/defense/score forms.
+   - `extraTex/attachments/` only when the user explicitly asks for optional attachment forms.
 4. Keep school-format logic in `styles/gcc-thesis.sty`; edit it only for format changes.
 5. Run:
 
@@ -44,22 +44,22 @@ python3 scripts/doctor.py
 6. If the environment is ready, compile:
 
 ```bash
-bash scripts/build.sh all
+bash scripts/build.sh main
 ```
 
-7. Inspect both generated PDFs. Check at least:
+7. Inspect `main.pdf`. Check at least:
    - Cover page.
    - Originality statement and copyright authorization.
    - Chinese abstract, English abstract, and TOC.
    - First body page.
    - Figure/table captions.
    - References and thanks.
-   - Attachment forms.
 
 ## Rules
 
 - Do not claim full compliance unless PDF compilation and visual inspection both succeeded.
 - Do not fabricate experiments, screenshots, user research, references, signatures, dates, or implemented features. Mark missing evidence as TODO.
+- Do not work on attachment forms, scoring sheets, signatures, or review comments unless the user explicitly asks for them.
 - If `scripts/doctor.py` fails, report the missing TeX tool or package.
 - Do not commit generated PDFs or LaTeX cache unless explicitly asked.
 - Preserve the unofficial-template disclaimer and license caveat.

@@ -94,8 +94,8 @@ python scripts/doctor.py
 
 可以上传本仓库 zip 到 Overleaf，编译器选择 **XeLaTeX**。
 
-- 正文入口选择 `main.tex`。
-- 附件材料册入口选择 `attachments.tex`。
+- 默认正文入口选择 `main.tex`。
+- 只有明确需要附件材料册时，才选择 `attachments.tex`。
 - 如果参考文献没有自动刷新，手动 Recompile 两到三次，或检查 Overleaf 是否启用了 Biber。
 
 ## 编译命令
@@ -103,14 +103,26 @@ python scripts/doctor.py
 推荐使用脚本：
 
 ```bash
-bash scripts/build.sh all
+bash scripts/build.sh main
 ```
 
-只编正文或附件：
+清理旧编译缓存：
 
 ```bash
-bash scripts/build.sh main
+bash scripts/build.sh clean
+```
+
+不带参数时也默认编译正文：
+
+```bash
+bash scripts/build.sh
+```
+
+附件材料册是可选产物；只有明确需要时再运行：
+
+```bash
 bash scripts/build.sh attachments
+bash scripts/build.sh all
 ```
 
 手动编译正文：
@@ -122,9 +134,11 @@ xelatex -interaction=nonstopmode main.tex
 xelatex -interaction=nonstopmode main.tex
 ```
 
-手动编译附件：
+可选手动编译附件：
 
 ```bash
+xelatex -interaction=nonstopmode attachments.tex
+biber attachments
 xelatex -interaction=nonstopmode attachments.tex
 xelatex -interaction=nonstopmode attachments.tex
 ```
@@ -165,15 +179,15 @@ sudo tlmgr install <包名>
 python3 scripts/doctor.py
 ```
 
-### 参考文献没有出现
+### 参考文献没有出现或附件引用失败
 
-正文需要至少经过：
+正文如果使用了引用，需要经过：
 
 ```bash
-xelatex main.tex
-biber main
-xelatex main.tex
-xelatex main.tex
+xelatex <入口>.tex
+biber <入口>
+xelatex <入口>.tex
+xelatex <入口>.tex
 ```
 
 推荐直接使用：

@@ -6,7 +6,6 @@ ROOT = Path(__file__).resolve().parents[1]
 
 required_files = [
     "main.tex",
-    "attachments.tex",
     "styles/gcc-thesis.sty",
     "extraTex/@config.tex",
     "extraTex/meta.tex",
@@ -20,12 +19,6 @@ required_files = [
     "extraTex/back/appendix.tex",
     "extraTex/back/references.bib",
     "extraTex/back/thanks.tex",
-    "extraTex/attachments/catalog.tex",
-    "extraTex/attachments/task_book.tex",
-    "extraTex/attachments/proposal.tex",
-    "extraTex/attachments/progress_record.tex",
-    "extraTex/attachments/defense_record.tex",
-    "extraTex/attachments/score_sheet.tex",
     "assets/branding/gcc_logo.png",
     "README.md",
     "AGENTS.md",
@@ -70,7 +63,6 @@ if missing:
 
 combined = "\n".join((ROOT / path).read_text(encoding="utf-8") for path in [
     "main.tex",
-    "attachments.tex",
     "styles/gcc-thesis.sty",
     "extraTex/@config.tex",
 ])
