@@ -49,26 +49,55 @@
   \newfontfamily\gccTimes{TeX Gyre Termes}
 }
 
-\newcommand{\gccSetUnifiedCJKFont}[1]{%
-  \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-  \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-  \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-  \newCJKfontfamily\gccHei[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-  \newCJKfontfamily\gccFangSong[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-  \newCJKfontfamily\gccKai[AutoFakeBold=2,AutoFakeSlant=0.2]{#1}%
-}
-
 \IfFontExistsTF{Songti SC}{
-  \gccSetUnifiedCJKFont{Songti SC}
+  \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{Songti SC}
+  \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{Songti SC}
+  \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{Songti SC}
 }{
   \IfFontExistsTF{FandolSong-Regular}{
-    \gccSetUnifiedCJKFont{FandolSong-Regular}
+    \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{FandolSong-Regular}
+    \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{FandolSong-Regular}
+    \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{FandolSong-Regular}
   }{
     \IfFontExistsTF{Noto Serif CJK SC}{
-      \gccSetUnifiedCJKFont{Noto Serif CJK SC}
+      \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{Noto Serif CJK SC}
+      \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{Noto Serif CJK SC}
+      \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{Noto Serif CJK SC}
     }{
-      \gccSetUnifiedCJKFont{SimSun}
+      \setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.2]{SimSun}
+      \setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=0.2]{SimSun}
+      \newCJKfontfamily\gccSong[AutoFakeBold=2,AutoFakeSlant=0.2]{SimSun}
     }
+  }
+}
+
+\IfFontExistsTF{Heiti SC}{
+  \newCJKfontfamily\gccHei[AutoFakeBold=2]{Heiti SC}
+}{
+  \IfFontExistsTF{FandolHei-Regular}{
+    \newCJKfontfamily\gccHei[AutoFakeBold=2]{FandolHei-Regular}
+  }{
+    \newCJKfontfamily\gccHei[AutoFakeBold=2]{SimHei}
+  }
+}
+
+\IfFontExistsTF{STFangsong}{
+  \newCJKfontfamily\gccFangSong[AutoFakeBold=2]{STFangsong}
+}{
+  \IfFontExistsTF{FandolFang-Regular}{
+    \newCJKfontfamily\gccFangSong[AutoFakeBold=2]{FandolFang-Regular}
+  }{
+    \newCJKfontfamily\gccFangSong[AutoFakeBold=2]{FangSong}
+  }
+}
+
+\IfFontExistsTF{Kaiti SC}{
+  \newCJKfontfamily\gccKai[AutoFakeBold=2]{Kaiti SC}
+}{
+  \IfFontExistsTF{FandolKai-Regular}{
+    \newCJKfontfamily\gccKai[AutoFakeBold=2]{FandolKai-Regular}
+  }{
+    \newCJKfontfamily\gccKai[AutoFakeBold=2]{KaiTi}
   }
 }
 
@@ -106,6 +135,17 @@
 \gccDoubleSidedBlankPagestrue
 \newcommand{\gccBlankPage}{\thispagestyle{empty}\null\clearpage}
 \newcommand{\gccMaybeBlankPage}{\ifgccDoubleSidedBlankPages\gccBlankPage\fi}
+\newcommand{\gccClearToRecto}{%
+  \ifgccDoubleSidedBlankPages
+    \ifodd\value{page}
+      \clearpage\gccBlankPage
+    \else
+      \clearpage
+    \fi
+  \else
+    \clearpage
+  \fi
+}
 
 \providecommand{\gccPaperNo}{}
 \providecommand{\gccSchoolName}{广州商学院}
@@ -177,12 +217,15 @@
 \newcommand{\gccCoverTitleLine}[1]{%
   \underline{\makebox[12.3cm][c]{\gccFitText{12.3cm}{{\gccSong\bfseries\zihao{-2}\selectfont #1}}}}\par
 }
+\newcommand{\gccPaperNoLine}{%
+  \noindent\hfill{\gccSong\zihao{-4}\selectfont 论文编号：\underline{\makebox[3.3cm][c]{\gccPaperNo}}}\par
+}
 
 \newcommand{\gccMakeCover}{%
   \thispagestyle{empty}%
   \begingroup
   \setstretch{1.25}
-  \noindent{\gccSong\zihao{-4}\selectfont 论文编号：\gccPaperNo}\par
+  \gccPaperNoLine
   \vspace*{1.35cm}
   \begin{center}
     {\gccSong\bfseries\zihao{0}\selectfont \gccSchoolName\par}
@@ -216,7 +259,7 @@
   \thispagestyle{empty}%
   \begingroup
   \setstretch{1.25}
-  \noindent{\gccSong\zihao{-4}\selectfont 论文编号：\gccPaperNo}\par
+  \gccPaperNoLine
   \vspace*{1.35cm}
   \begin{center}
     {\gccSong\bfseries\zihao{0}\selectfont \gccSchoolName\par}
@@ -278,6 +321,7 @@
 \makeatletter
 \newcommand{\gccTableOfContents}{%
   \phantomsection
+  \addcontentsline{toc}{chapter}{目录}
   \begin{center}
     \vspace*{0.35cm}
     {\gccFrontTitleFont 目录\par}

@@ -16,6 +16,7 @@ required_files = [
     "extraTex/body/chapter-02.tex",
     "extraTex/body/chapter-03.tex",
     "extraTex/body/chapter-04.tex",
+    "extraTex/body/chapter-05.tex",
     "extraTex/back/appendix.tex",
     "extraTex/back/references.bib",
     "extraTex/back/thanks.tex",
